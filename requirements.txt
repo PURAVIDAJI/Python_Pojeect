@@ -4,6 +4,6 @@ matplotlib
 numpy
 pandas
 seaborn
-imageio-ffmpeg
+imageio_ffmpeg
 bar_chart_race
 plotly
