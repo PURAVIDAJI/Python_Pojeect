@@ -1,10 +1,11 @@
+import os
 import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib import rc
-rc('font', family='AppleGothic')
+
 
 plt.rcParams['axes.unicode_minus'] = False
 
@@ -14,14 +15,22 @@ def main():
     st.title('Population and House prices')
     st.markdown("---")
     st.subheader("Population growth rate and apartment price growth rate")
-    img = Image.open('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/data/img1.png')
+    
+
+    #현재 스크립트 파일이 위치한 디렉토리 기준으로 상대 경로 지정
+    img_path = os.path.join('pages','data','img1.png')
+    img =Image.open(img_path)
     st.image(img)
 
     st.markdown("---")
 
     st.subheader("Population and house price trend in Seoul")
-    price_df = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/data/korea_price.csv', encoding='UTF-8')
-    population_df = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/data/korea_population.csv', encoding='UTF-8')
+
+    price_path = os.path.join('pages','data', 'korea_price.csv')
+    population_path = os.path.join('pages','data', 'korea_population.csv')
+
+    price_df = pd.read_csv(price_path, encoding='UTF-8')
+    population_df = pd.read_csv(population_path, encoding='UTF-8')
 
     seoul_price_array = np.array(price_df.iloc[0])[1:]
     seoul_population_array = (np.array(population_df.iloc[0])[1:]) / 10000

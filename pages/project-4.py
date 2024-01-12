@@ -4,7 +4,8 @@ import os
 import pandas as pd
 
 ## 파일 로드
-df = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/hdata/scatter_total_preprocessed_data.csv', encoding='UTF-8')
+script_dir = os.path.dirname(__file__)
+df = pd.read_csv(os.path.join(script_dir, 'hdata', 'scatter_total_preprocessed_data.csv'), encoding='UTF-8')
 
 def main(df):
     st.title("Animation")

@@ -1,3 +1,4 @@
+import os
 import plotly.express as px
 import streamlit as st
 import matplotlib.pyplot as plt
@@ -19,22 +20,23 @@ import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
-
-
-rc('font', family='AppleGothic')
+# 현재 스크립트 파일이 위치한 디렉토리를 기준으로 상대 경로 지정
+script_dir = os.path.dirname(__file__)
 
 plt.rcParams['axes.unicode_minus'] = False
 
 
 # 폰트 설정
-font_path = "C:/Windows/Fonts/malgun.ttf"  # 사용하고자 하는 한글 폰트 경로로 변경
+font_path = os.path.join(script_dir,'font','malgun.ttf')  # 사용하고자 하는 한글 폰트 경로로 변경
 font_name = fm.FontProperties(fname=font_path).get_name()
 plt.rc('font', family=font_name)
 
 def main():
     # Load data
     st.title("Total number of employees")
-    df1 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/total_worker.csv', encoding='utf-8')
+
+    # 현재 스크립트 파일이 위치한 디렉토리를 기준으로 상대 경로 지정
+    df1 = pd.read_csv(os.path.join(script_dir,'page2data/total_worker.csv'), encoding='utf-8')
     df1 = df1.transpose()
     df1.columns= ['서울 남부', '서울 북부', '경기 북부','경기 남부','인천']
     df1.drop('Unnamed: 0', axis=0, inplace=True)
@@ -51,7 +53,7 @@ def main():
     st.title("Monthly Earnings By Industry")
 
     # load data
-    df10 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/wt5.csv', encoding='utf-8')
+    df10 = pd.read_csv(os.path.join(script_dir, 'page2data/wt5.csv'), encoding='utf-8')
     df10.index = df10['Unnamed: 0']
     df10.drop(['Unnamed: 0'], axis=1, inplace=True)
     
@@ -77,11 +79,11 @@ def main():
 
     st.markdown("---")
     st.title("Relative ratio of the Top 4 industries with high income")
-    data1 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/Gangnam.csv', encoding='utf-8')
-    data2 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/Gangbuk.csv', encoding='utf-8')
-    data3 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/ggnam.csv', encoding='utf-8')
-    data4 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/ggbuk.csv', encoding='utf-8')
-    data5 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/incheon.csv', encoding='utf-8')
+    data1 = pd.read_csv(os.path.join(script_dir,'page2data/Gangnam.csv') , encoding='utf-8')
+    data2 = pd.read_csv(os.path.join(script_dir,'page2data/Gangbuk.csv') , encoding='utf-8')
+    data3 = pd.read_csv(os.path.join(script_dir,'page2data/ggnam.csv'), encoding='utf-8')
+    data4 = pd.read_csv(os.path.join(script_dir,'page2data/ggbuk.csv'), encoding='utf-8')
+    data5 = pd.read_csv(os.path.join(script_dir,'page2data/incheon.csv'), encoding='utf-8')
 
     df1 = pd.DataFrame(data1)
     df2 = pd.DataFrame(data2)
@@ -135,7 +137,7 @@ def main():
     
     st.title("High-income Earners(2021)")
 
-    tree1 = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/page2data/treemap.csv', encoding='utf-8' )
+    tree1 = pd.read_csv(os.path.join(script_dir, 'page2data/treemap.csv'), encoding='utf-8' )
 
     fig = px.treemap(tree1, path=['total', '수도권', '시군구별'], values='highincome_num',
                      color='house_price', hover_data=['ratio'],

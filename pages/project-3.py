@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 from PIL import Image
 import matplotlib.pyplot as plt
@@ -6,9 +7,8 @@ import pandas as pd
 from matplotlib import rc
 import plotly.express as px
 import plotly.graph_objects as go
-rc('font', family='AppleGothic')
 
-plt.rcParams['axes.unicode_minus'] = False
+
 
 def main():
 
@@ -16,7 +16,11 @@ def main():
     import pandas as pd
     import altair as alt
 
-    df = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/3data/wage_price.csv', encoding='utf-8')
+    # 현재 스크립트 파일이 위치한 디렉토리를 기준으로 상대 경로 지정
+    script_dir = os.path.dirname(__file__)
+    file_path = os.path.join(script_dir, '3data', 'wage_price.csv')
+
+    df = pd.read_csv(file_path, encoding='utf-8')
 
     # 스트림릿 앱 시작
     st.title('Wages and House Prices by Region')
@@ -50,14 +54,15 @@ def main():
     )
 
     st.altair_chart(chart)
+
     st.markdown("---")
     st.title("Mapping Wages and House Prices")
 
     # 이미지 파일 경로들
     image_dict = {
-        "서울":"C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/3data/s_img.png",
-        "경기":"C:/Users/ijk95/OneDrive/바탕 화면/visual//pages/3data/gg_img.png",
-        "인천":"C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/3data/ic_img.png"
+        "서울": os.path.join(script_dir, '3data', 's_img.png'),
+        "경기": os.path.join(script_dir, '3data', 'gg_img.png'),
+        "인천": os.path.join(script_dir, '3data', 'ic_img.png')
     }
 
     # 셀렉션 바로 선택한 이미지의 이름을 얻습니다.

@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
@@ -6,14 +7,13 @@ import seaborn as sns
 from PIL import Image
 from matplotlib import rc
 
-rc('font', family='AppleGothic')
-
 plt.rcParams['axes.unicode_minus'] = False
 
 
 ## 파일 로드
+script_dir = os.path.dirname(__file__)
+df = pd.read_csv(os.path.join(script_dir, 'hdata', 'scatter_total_preprocessed_data.csv'), encoding='UTF-8')
 
-df = pd.read_csv('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/hdata/scatter_total_preprocessed_data.csv', encoding='UTF-8')
 df_array = np.array(df)
 #print(df.columns)
 
@@ -51,19 +51,23 @@ def main():
 
     st.title('Analysis')
     st.subheader("고소득 비율과 집값의 상관관계")
-    img = Image.open('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/hdata/conclusion_scatter.png')
+    img_path = os.path.join(script_dir,'hdata','conclusion_scatter.png')
+    img =Image.open(img_path)
     st.image(img)
 
     st.markdown("---")
 
     st.title('Conclusion')
     st.subheader("고소득 비율과 집값의 상관관계에 대한 지도")
-    img = Image.open('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/hdata/conclusion_1.png')
+
+    img_path = os.path.join(script_dir,'hdata','conclusion_1.png')
+    img = Image.open(img_path)
     st.image(img)
 
     st.markdown("---")
-    
-    img = Image.open('C:/Users/ijk95/OneDrive/바탕 화면/visual/pages/hdata/conclusion10.png')
+
+    img_path = os.path.join(script_dir,'hdata','conclusion10.png')
+    img = Image.open(img_path)
     st.image(img)
 
     st.markdown("---")
