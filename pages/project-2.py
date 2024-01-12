@@ -1,7 +1,7 @@
-import matplotlib
 import plotly.express as px
 import streamlit as st
 import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -15,9 +15,21 @@ import streamlit.components.v1 as components
 import base64
 import plotly.express as px
 import plotly.graph_objects as go
+
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+
+
 rc('font', family='AppleGothic')
 
 plt.rcParams['axes.unicode_minus'] = False
+
+
+# 폰트 설정
+font_path = "C:/Windows/Fonts/malgun.ttf"  # 사용하고자 하는 한글 폰트 경로로 변경
+font_name = fm.FontProperties(fname=font_path).get_name()
+plt.rc('font', family=font_name)
 
 def main():
     # Load data
@@ -52,8 +64,7 @@ def main():
         period_label={'x': .98, 'y': .2, 'ha': 'right','size': 31},
         perpendicular_bar_func='mean',
         title='Monthly Earnings By Industry',
-
-        ).data
+        )
 
 
     start = html_str.find('base64,') + len('base64,')
@@ -62,6 +73,7 @@ def main():
     video = base64.b64decode(html_str[start:end])
     st.video(video)
     df10
+
 
     st.markdown("---")
     st.title("Relative ratio of the Top 4 industries with high income")
