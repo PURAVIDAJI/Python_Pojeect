@@ -51,37 +51,37 @@ def main():
 
     st.markdown("---")
 
-    st.title("Monthly Earnings By Industry")
+    # st.title("Monthly Earnings By Industry")
 
-    # load data
-    df10 = pd.read_csv(os.path.join(script_dir, 'page2data/wt5.csv'), encoding='utf-8')
-    df10.index = df10['Unnamed: 0']
-    df10.drop(['Unnamed: 0'], axis=1, inplace=True)
+    # # load data
+    # df10 = pd.read_csv(os.path.join(script_dir, 'page2data/wt5.csv'), encoding='utf-8')
+    # df10.index = df10['Unnamed: 0']
+    # df10.drop(['Unnamed: 0'], axis=1, inplace=True)
     
     
-    html_str= bcr.bar_chart_race(
-            df = df10,
-            n_bars=10,
-            figsize=(8, 5),
-            sort='desc',
-            period_length =700,
-            period_label={'x': .98, 'y': .2, 'ha': 'right','size': 31},
-            perpendicular_bar_func='mean',
-            title='Monthly Earnings By Industry',
-        )
-    # except Exception as e:
-    #     st.error(f"Error generating bar chart race: {e}")
-    #     st.stop()
+    # html_str= bcr.bar_chart_race(
+    #         df = df10,
+    #         n_bars=10,
+    #         figsize=(8, 5),
+    #         sort='desc',
+    #         period_length =700,
+    #         period_label={'x': .98, 'y': .2, 'ha': 'right','size': 31},
+    #         perpendicular_bar_func='mean',
+    #         title='Monthly Earnings By Industry',
+    #     )
+    # # except Exception as e:
+    # #     st.error(f"Error generating bar chart race: {e}")
+    # #     st.stop()
 
-    start = html_str.find('base64,') + len('base64,')
-    end = html_str.find('">')
+    # start = html_str.find('base64,') + len('base64,')
+    # end = html_str.find('">')
    
-    video = base64.b64decode(html_str[start:end])
-    st.video(video)
-    df10
+    # video = base64.b64decode(html_str[start:end])
+    # st.video(video)
+    # df10
 
 
-    st.markdown("---")
+    # st.markdown("---")
     st.title("Relative ratio of the Top 4 industries with high income")
     data1 = pd.read_csv(os.path.join(script_dir,'page2data/Gangnam.csv') , encoding='utf-8')
     data2 = pd.read_csv(os.path.join(script_dir,'page2data/Gangbuk.csv') , encoding='utf-8')
