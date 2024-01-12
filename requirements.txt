@@ -4,6 +4,6 @@ matplotlib
 numpy
 pandas
 seaborn
-ffmpeg-python == 6.1.1
+ffmpeg-python==6.1.1
 bar_chart_race
 plotly
