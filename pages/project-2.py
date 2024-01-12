@@ -71,10 +71,21 @@ def main():
 
     start = html_str.find('base64,') + len('base64,')
     end = html_str.find('">')
+    video_encoded = html_str[start:end]
+    video_decoded = base64.b64decode(video_encoded)
 
-    video = base64.b64decode(html_str[start:end])
-    st.video(video)
-    df10
+    # 비디오를 파일에 저장
+    video_filepath = os.path.join(script_dir, 'output.mp4')
+    with open(video_filepath, 'wb') as f:
+         f.write(video_decoded)
+
+    # Streamlit에서 비디오 표시
+    st.video(video_filepath)
+
+
+    # video = base64.b64decode(html_str[start:end])
+    # st.video(video)
+    # df10
 
 
     st.markdown("---")
