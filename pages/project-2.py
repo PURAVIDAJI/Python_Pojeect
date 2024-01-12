@@ -8,7 +8,7 @@ import pandas as pd
 import seaborn as sns
 import streamlit as st
 import ffmpeg
-import imageio_ffmpeg
+# import imageio_ffmpeg
 import bar_chart_race as bcr
 from matplotlib import rc
 
