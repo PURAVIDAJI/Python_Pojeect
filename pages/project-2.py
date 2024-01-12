@@ -57,35 +57,27 @@ def main():
     df10.index = df10['Unnamed: 0']
     df10.drop(['Unnamed: 0'], axis=1, inplace=True)
     
-    html_str= bcr.bar_chart_race(
-        df = df10,
-        n_bars=10,
-        figsize=(8, 5),
-        sort='desc',
-        period_length =700,
-        period_label={'x': .98, 'y': .2, 'ha': 'right','size': 31},
-        perpendicular_bar_func='mean',
-        title='Monthly Earnings By Industry',
+    try:
+        html_str= bcr.bar_chart_race(
+            df = df10,
+            n_bars=10,
+            figsize=(8, 5),
+            sort='desc',
+            period_length =700,
+            period_label={'x': .98, 'y': .2, 'ha': 'right','size': 31},
+            perpendicular_bar_func='mean',
+            title='Monthly Earnings By Industry',
         )
-
+    except Exception as e:
+        st.error(f"Error generating bar chart race: {e}")
+        st.stop()
 
     start = html_str.find('base64,') + len('base64,')
     end = html_str.find('">')
-    video_encoded = html_str[start:end]
-    video_decoded = base64.b64decode(video_encoded)
-
-    # 비디오를 파일에 저장
-    video_filepath = os.path.join(script_dir, 'output.mp4')
-    with open(video_filepath, 'wb') as f:
-         f.write(video_decoded)
-
-    # Streamlit에서 비디오 표시
-    st.video(video_filepath)
-
-
-    # video = base64.b64decode(html_str[start:end])
-    # st.video(video)
-    # df10
+   
+    video = base64.b64decode(html_str[start:end])
+    st.video(video)
+    df10
 
 
     st.markdown("---")
