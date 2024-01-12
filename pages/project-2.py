@@ -10,6 +10,7 @@ import streamlit as st
 import ffmpeg
 import bar_chart_race as bcr
 from matplotlib import rc
+import imageio_ffmpeg as iio_ffmpeg
 
 import matplotlib.animation as animation
 import streamlit.components.v1 as components
@@ -23,7 +24,7 @@ import matplotlib.font_manager as fm
 # 현재 스크립트 파일이 위치한 디렉토리를 기준으로 상대 경로 지정
 script_dir = os.path.dirname(__file__)
 
-plt.rcParams['axes.unicode_minus'] = False
+plt.rcParams['animation.ffmpeg_path'] = iio_ffmpeg.get_ffmpeg_exe()
 
 
 # 폰트 설정
