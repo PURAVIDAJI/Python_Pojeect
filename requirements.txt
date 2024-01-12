@@ -1,0 +1,9 @@
+streamlit
+Pillow
+matplotlib
+numpy
+pandas
+seaborn
+ffmpeg
+bar_chart_race
+plotly
