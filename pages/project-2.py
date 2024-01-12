@@ -57,8 +57,8 @@ def main():
     df10.index = df10['Unnamed: 0']
     df10.drop(['Unnamed: 0'], axis=1, inplace=True)
     
-    try:
-        html_str= bcr.bar_chart_race(
+    
+    html_str= bcr.bar_chart_race(
             df = df10,
             n_bars=10,
             figsize=(8, 5),
@@ -68,9 +68,9 @@ def main():
             perpendicular_bar_func='mean',
             title='Monthly Earnings By Industry',
         )
-    except Exception as e:
-        st.error(f"Error generating bar chart race: {e}")
-        st.stop()
+    # except Exception as e:
+    #     st.error(f"Error generating bar chart race: {e}")
+    #     st.stop()
 
     start = html_str.find('base64,') + len('base64,')
     end = html_str.find('">')
